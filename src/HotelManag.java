@@ -6,7 +6,6 @@ public class HotelManag {
     public HotelManag(int numStandard, double standardPrice, int numSuite, double suitePrice){
         standardRooms = new StandardRooms[numStandard];
         suiteRooms = new SuiteRooms[numSuite];
-
         for (int i = 0; i < numStandard; i++){
             standardRooms[i] = new StandardRooms(i+1, true, standardPrice);
         }
@@ -39,7 +38,9 @@ public class HotelManag {
     public boolean bookStandardRoom(String custmomerName, String phoneNumber){
         int roomNum = findAvailableStandardRoom();
         if(roomNum == -1){
-            System.out.println("No rooms available");
+            System.out.println("\n---------------------");
+            System.out.println("No room available !");
+            System.out.println("---------------------\n");
             return false;
         }
 
@@ -49,7 +50,9 @@ public class HotelManag {
                 standardRooms[i].setCustomerName(custmomerName);
                 standardRooms[i].setCustomerPhone(phoneNumber);
                 totalEarning += standardRooms[i].getPrice();
-                System.out.println("Room Number "+ standardRooms[i].getRoomNumber()+" has booked for the client " + custmomerName);
+                System.out.println("\n------------------------------------------------------");
+                System.out.println("Room Number "+ standardRooms[i].getRoomNumber()+" has booked for the client " + custmomerName );
+                System.out.println("------------------------------------------------------\n");
             }
         }
         return true;
@@ -58,7 +61,9 @@ public class HotelManag {
     public boolean bookSuiteRoom(String custmomerName, String phoneNumber){
         int roomNum = findAvailableSuiteRoom();
         if(roomNum == -1){
-            System.out.println("No suite available");
+            System.out.println("\n---------------------");
+            System.out.println("No room available !");
+            System.out.println("---------------------\n");
             return false;
         }
 
@@ -68,7 +73,10 @@ public class HotelManag {
                 suiteRooms[i].setCustomerName(custmomerName);
                 suiteRooms[i].setCustomerPhone(phoneNumber);
                 totalEarning += suiteRooms[i].getPrice();
+                System.out.println("\n------------------------------------------------------");
                 System.out.println("suite Number "+ suiteRooms[i].getRoomNumber()+" has booked for the client " + custmomerName);
+                System.out.println("------------------------------------------------------\n");
+
             }
         }
         return true;
@@ -81,7 +89,8 @@ public class HotelManag {
     public void showRoomStatus(int numberRoom){
         for ( int i =0; i< standardRooms.length; i++){
             if ( standardRooms[i].getRoomNumber() == numberRoom){
-                System.out.println("Customer Name : "+standardRooms[i].getCustomerName()+ " Customer Phone Number : " + standardRooms[i].getCustomerPhone());
+                System.out.println("Customer Name : "+standardRooms[i].getCustomerName());
+                System.out.println("Customer Phone Number : " + standardRooms[i].getCustomerPhone());
             }
         }
     }
@@ -89,7 +98,8 @@ public class HotelManag {
     public void showSuiteStatus(int roomNumber){
         for ( int i =0; i< suiteRooms.length; i++){
             if ( suiteRooms[i].getRoomNumber() == roomNumber){
-                System.out.println("Customer Name : "+suiteRooms[i].getCustomerName()+ " Customer Phone Number : " + suiteRooms[i].getCustomerPhone());
+                System.out.println("Customer Name : "+suiteRooms[i].getCustomerName());
+                System.out.println("Customer Phone Number : " + suiteRooms[i].getCustomerPhone());
             }
         }
     }
@@ -127,5 +137,19 @@ public class HotelManag {
             }
         }
     }
+
+    public void changeRoomPrice(double newPrice){
+        for(int i = 0; i < standardRooms.length; i++){
+            standardRooms[i].setPrice(newPrice);
+        }
+
+    } 
+
+    public void changeSuitePrice(double newPrice){
+        for(int i = 0; i < suiteRooms.length; i++){
+            suiteRooms[i].setPrice(newPrice);
+        }
+
+    } 
 
 }

@@ -74,7 +74,7 @@ class SuiteRooms extends Rooms{
         return price;
     }
 
-    public static void setPrice(double _newPrice){
+    public void setPrice(double _newPrice){
         price = _newPrice;
     }
 }
